@@ -28,5 +28,10 @@ def get_weather(city):
     }
 
     response = requests.get(BASE_URL, params=params)
+    data = response.json()
 
-    return response.json()
+    if data["cod"] != 200:
+        print(f"❌ Error: {data['message']}")
+        return None
+
+    return data    
